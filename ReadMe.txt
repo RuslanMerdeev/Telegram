@@ -1,0 +1,2 @@
+1. Добавить в папку ...\app\libs jar-библиотеку telegrambots-3.4-jar-with-dependencies из https://github.com/rubenlagus/TelegramBots/releases/
+2. File -> Project Structure... -> Modules (app) -> Dependencies -> + -> Jar dependency -> Libs -> Выбираем нашу библиотеку
