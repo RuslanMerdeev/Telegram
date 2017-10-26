@@ -1,12 +1,16 @@
 package com.merdeev.telegram;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends Context {
+import com.pengrad.telegrambot.request.GetUpdates;
 
-    private TextView tvEvent;
-    String app_name;
+public class MainActivity extends Context implements View.OnClickListener{
+
+    private String app_name;
+    private Button btnCreate, btnKill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +27,11 @@ public class MainActivity extends Context {
 
             SimpleBot.create(this);
 
-            tvEvent = (TextView) findViewById(R.id.tvEvent);
+            btnCreate = (Button) findViewById(R.id.btnCreate);
+            btnCreate.setOnClickListener(this);
+
+            btnKill = (Button) findViewById(R.id.btnKill);
+            btnKill.setOnClickListener(this);
         }
         // Выводится трейс для исключения
         catch (Exception e) {
@@ -67,12 +75,6 @@ public class MainActivity extends Context {
             // Проверяется, что источник - объект класса SimpleBot
             if (cc instanceof SimpleBot) {
                 Trace.save("mainActivity: complete: SimpleBot");
-
-                // Проверяется, что тип результата текст
-                if (type == String.class) {
-                    String text = (String) result;
-                    tvEvent.setText(text);
-                }
             }
             // Проверяется, что источник - объект класса Dialog
             else if (cc instanceof Dialog) {
@@ -139,6 +141,27 @@ public class MainActivity extends Context {
         // Выводится трейс для исключения
         catch (Exception e) {
             Trace.showException(this, e, "mainActivity: complete:");
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        Trace.save("mainActivity: onClick");
+
+        try {
+            switch (view.getId()) {
+                case R.id.btnCreate:
+                    SimpleBot.create(this);
+                    break;
+
+                case R.id.btnKill:
+                    SimpleBot.kill(this);
+                    break;
+            }
+        }
+        // Выводится трейс для исключения
+        catch (Exception e) {
+            Trace.showException(this, e, "mainActivity: onClick:");
         }
     }
 }
