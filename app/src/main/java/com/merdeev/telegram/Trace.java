@@ -29,14 +29,14 @@ class Trace {
         Log.d(LOG, System.currentTimeMillis() + " " + "trace: constructor");
 
         try {
-            // Создается папка с именем приложения
-            file = createFile(folder);
-            if (!file.mkdirs()) Log.d(LOG, System.currentTimeMillis() + " " + "trace: constructor: folder already exist");
-
-            // Создается пустой log.txt файл
-            file = createFile(folder + "/" + name);
-            if (!file.delete()) Log.d(LOG, System.currentTimeMillis() + " " + "trace: constructor: first creating file");
-            file.createNewFile();
+//            // Создается папка с именем приложения
+//            file = createFile(folder);
+//            if (!file.mkdirs()) Log.d(LOG, System.currentTimeMillis() + " " + "trace: constructor: folder already exist");
+//
+//            // Создается пустой log.txt файл
+//            file = createFile(folder + "/" + name);
+//            if (!file.delete()) Log.d(LOG, System.currentTimeMillis() + " " + "trace: constructor: first creating file");
+//            file.createNewFile();
         }
         // Выводится трейс для исключения
         catch (Exception e) {
@@ -56,13 +56,13 @@ class Trace {
         try {
             Log.d(LOG, System.currentTimeMillis() + " " + string);
 
-            if (file == null) Log.d(LOG, System.currentTimeMillis() + " " + "trace: save: file: null");
-            else {
-                if (!file.isFile()) Log.d(LOG, System.currentTimeMillis() + " " + "trace: save: file: not file: " + file.getAbsolutePath());
-                else {
-                    appendText(file, System.currentTimeMillis() + " " + string + "\n");
-                }
-            }
+//            if (file == null) Log.d(LOG, System.currentTimeMillis() + " " + "trace: save: file: null");
+//            else {
+//                if (!file.isFile()) Log.d(LOG, System.currentTimeMillis() + " " + "trace: save: file: not file: " + file.getAbsolutePath());
+//                else {
+//                    appendText(file, System.currentTimeMillis() + " " + string + "\n");
+//                }
+//            }
         }
         // Выводится трейс для исключения
         catch (Exception e) {

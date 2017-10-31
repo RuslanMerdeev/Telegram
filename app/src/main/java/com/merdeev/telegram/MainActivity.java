@@ -11,6 +11,7 @@ public class MainActivity extends Context implements View.OnClickListener{
 
     private String app_name;
     private Button btnCreate, btnKill;
+    private MyBot myBot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class MainActivity extends Context implements View.OnClickListener{
 
             Trace.save("mainActivity: onCreate");
 
-            SimpleBot.create(this);
+            myBot = MyBot.create();//SimpleBot.create(this);
 
             btnCreate = (Button) findViewById(R.id.btnCreate);
             btnCreate.setOnClickListener(this);
@@ -151,11 +152,14 @@ public class MainActivity extends Context implements View.OnClickListener{
         try {
             switch (view.getId()) {
                 case R.id.btnCreate:
-                    SimpleBot.create(this);
+//                    SimpleBot.create(this);
+                    if (myBot != null) myBot.kill();
+                    myBot = MyBot.create();
                     break;
 
                 case R.id.btnKill:
-                    SimpleBot.kill(this);
+//                    SimpleBot.kill(this);
+                    if (myBot != null) myBot.kill();
                     break;
             }
         }
